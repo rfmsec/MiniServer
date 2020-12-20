@@ -1,6 +1,4 @@
-import flask
-import datetime
-import socket
+import flask, datetime, socket
 app = flask.Flask(__name__)
 
 

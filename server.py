@@ -1,6 +1,7 @@
 import flask, datetime, socket
 app = flask.Flask(__name__)
 
+#Added comments
 
 @app.route('/')
 def index():

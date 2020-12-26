@@ -1,0 +1,185 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "tomer"
+          password: "{AQAAABAAAAAQ2r06vMHstRcf4kFx7R/msaj/zuaulD2C+sER8wVB8mk=}"
+          scope: GLOBAL
+          username: "tomer"
+      - usernamePassword:
+          id: "docker-credentials"
+          password: "{AQAAABAAAAAgJtVrinZCNgZKthuOOR2olJYt20uczpBRN1jTNJduGyT3uP2nN59QZol+vQg0soxX}"
+          scope: GLOBAL
+          username: "sec911"
+      - usernamePassword:
+          id: "github-cred"
+          password: "{AQAAABAAAAAgkRg5g6rB9mvAOeKd/3CWGUU9uomaIORJPFLWDMfGzhkkuSJreOWX+CRlpuSR1z/Y}"
+          scope: GLOBAL
+          username: "rfmsec"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "Overall/Administer:tomer"
+      - "Overall/Read:authenticated"
+  clouds:
+  - docker:
+      disabled:
+        disabledByChoice: true
+        enabledByChoice: false
+      dockerApi:
+        connectTimeout: 60
+        dockerHost:
+          uri: "unix:///var/run/docker.sock"
+        readTimeout: 60
+      name: "docker"
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "jenkins.security.QueueItemAuthenticatorMonitor"
+  - "jenkins.security.ResourceDomainRecommendation"
+  - "jenkins.security.s2m.MasterKillSwitchWarning"
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 2
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "tomer"
+        name: "Tomer"
+        properties:
+        - "apiToken"
+        - favoriting:
+            autofavoriteEnabled: true
+        - "favorite"
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "user"
+        - samlCustomProperty:
+            attributes: |-
+              FAILED TO EXPORT
+              org.jenkinsci.plugins.saml.user.SamlCustomProperty#attributes: No configurator found for type class org.jenkinsci.plugins.saml.user.SamlCustomProperty$Attribute
+        - "slack"
+        - "timezone"
+        - "loginDetailsProperty"
+        - mailer:
+            emailAddress: "e@mail.com"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  copyartifact:
+    mode: PRODUCTION
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+unclassified:
+  anchore:
+    debug: false
+    enginepass: "{AQAAABAAAAAQvzC7507OCxCbB8dEmul+MSG1FJJ2RKBLcm99VF5z/E0=}"
+    engineurl: "http://your_anchore_engine_host_ip:your_anchore_engine_port/v1"
+    engineverify: false
+  artifactoryBuilder:
+    artifactoryServers:
+    - artifactoryUrl: "http://192.168.99.100:30802/artifactory"
+      bypassProxy: false
+      connectionRetry: 3
+      deployerCredentialsConfig:
+        credentialsId: "tomer"
+        overridingCredentials: false
+        password: "{AQAAABAAAAAQidEUzw5YwSyvck5zq4JEC9qoaAXcXusuoBAjzR2v2tU=}"
+        username: "****"
+      deploymentThreads: 3
+      serverId: "Art01"
+      timeout: 300
+    jfrogPipelinesServer:
+      bypassProxy: false
+      connectionRetries: 3
+      credentialsConfig:
+        ignoreCredentialPluginDisabled: true
+        overridingCredentials: false
+        password: "{AQAAABAAAAAQVvi3TcaLfKi1J1stH1R64tlXSVOVg1cKgVchyM5ABsw=}"
+        username: "****"
+      timeout: 300
+    useCredentialsPlugin: true
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.99.100:30800/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://192.168.99.100:30800/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pluginImpl:
+    enableCredentialsFromNode: false
+  pollSCM:
+    pollingThreadCount: 10
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  upstream:
+    globalUpstreamFilterStrategy: UseOldest
+tool:
+  dockerTool:
+    installations:
+    - name: "docker"
+      properties:
+      - installSource:
+          installers:
+          - fromDocker:
+              version: "latest"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  pipelineMaven:
+    triggerDownstreamUponResultAborted: false
+    triggerDownstreamUponResultFailure: false
+    triggerDownstreamUponResultNotBuilt: false
+    triggerDownstreamUponResultSuccess: true
+    triggerDownstreamUponResultUnstable: false

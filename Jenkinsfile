@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        registry = "sec911/miniserver" 
+        imageName = "sec911/miniserver" 
         registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
@@ -14,15 +14,15 @@ pipeline {
         stage('Building') { 
             steps { 
                 script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
                 }
             } 
         }
         stage('Testing the build') {
            steps {   
                script {
-              dockerImage.inside {
-                 sh curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/
+                  dockerImage.inside {
+                     sh curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/
                 }
               }
            }

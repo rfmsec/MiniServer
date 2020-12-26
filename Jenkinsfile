@@ -1,7 +1,7 @@
 pipeline {
     environment { 
         registry = "sec911/miniserver" 
-        registryCredential = 'docker-hub-cred' 
+        registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
     agent { dockerfile true }
@@ -11,7 +11,7 @@ pipeline {
                 git 'https://github.com/rfmsec/MiniServer.git' 
             }
         } 
-        stage('Building ') { 
+        stage('Building') { 
             steps { 
                 script { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
@@ -20,8 +20,10 @@ pipeline {
         }
         stage('Testing the build') {
            steps {   
+               script {
               dockerImage.inside {
                  sh curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/
+                }
               }
            }
         }

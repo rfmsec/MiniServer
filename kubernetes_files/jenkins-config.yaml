@@ -18,9 +18,6 @@ credentials:
           scope: GLOBAL
           username: "rfmsec"
 jenkins:
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
   authorizationStrategy:
     globalMatrix:
       permissions:
@@ -28,9 +25,6 @@ jenkins:
       - "Overall/Read:authenticated"
   clouds:
   - docker:
-      disabled:
-        disabledByChoice: true
-        enabledByChoice: false
       dockerApi:
         connectTimeout: 60
         dockerHost:
@@ -42,21 +36,10 @@ jenkins:
   - "jenkins.security.QueueItemAuthenticatorMonitor"
   - "jenkins.security.ResourceDomainRecommendation"
   - "jenkins.security.s2m.MasterKillSwitchWarning"
-  labelAtoms:
-  - name: "master"
-  markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
   numExecutors: 2
-  primaryView:
-    all:
-      name: "all"
-  projectNamingStrategy: "standard"
-  quietPeriod: 2
-  remotingSecurity:
-    enabled: false
-  scmCheckoutRetryCount: 0
   securityRealm:
     local:
       allowsSignup: false
@@ -107,11 +90,6 @@ security:
   sSHD:
     port: -1
 unclassified:
-  anchore:
-    debug: false
-    enginepass: "{AQAAABAAAAAQvzC7507OCxCbB8dEmul+MSG1FJJ2RKBLcm99VF5z/E0=}"
-    engineurl: "http://your_anchore_engine_host_ip:your_anchore_engine_port/v1"
-    engineverify: false
   artifactoryBuilder:
     artifactoryServers:
     - artifactoryUrl: "http://192.168.99.100:30802/artifactory"
@@ -139,14 +117,6 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "http://192.168.99.100:30800/github-webhook/"
-  gitSCM:
-    addGitTagAction: false
-    allowSecondFetch: false
-    createAccountBasedOnEmail: false
-    disableGitToolChooser: false
-    hideCredentials: false
-    showEntireCommitSummaryInChanges: false
-    useExistingAccountWithSameEmail: false
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://192.168.99.100:30800/"

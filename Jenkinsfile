@@ -4,7 +4,7 @@ pipeline {
         dockerImage = ''
     }
     agent { dockerfile true }
-    environment { PATH = $PATH:/opt/java/openjdk/bin
+    environment { PATH = $PATH:/opt/java/openjdk/bin }
     stages { 
         stage('Artifactory configuration') {
             steps {

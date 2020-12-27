@@ -7,6 +7,11 @@ credentials:
           password: "1234"
           scope: GLOBAL
           username: "tomer"
+      - usernamePassword:
+          id: "artifactory"
+          password: "Aa123456"
+          scope: GLOBAL
+          username: "tomer"
 jenkins:
   authorizationStrategy:
     globalMatrix:
@@ -57,12 +62,12 @@ unclassified:
       bypassProxy: false
       connectionRetry: 3
       deployerCredentialsConfig:
-        credentialsId: "tomer"
+        credentialsId: "artifactory"
         overridingCredentials: false
         password: "{AQAAABAAAAAQidEUzw5YwSyvck5zq4JEC9qoaAXcXusuoBAjzR2v2tU=}"
         username: "****"
       deploymentThreads: 3
-      serverId: "Art01"
+      serverId: "Artifactory-1"
       timeout: 300
     jfrogPipelinesServer:
       bypassProxy: false

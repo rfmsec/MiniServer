@@ -33,12 +33,7 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
-                sh "pwd"
-                sh "ls"
-                sh "ls /opt/"
-                sh "ls /opt/java/"
-                sh "ls /opt/java/openjdk/"
-                sh "ls /opt/java/openjdk/bin/"
+                sh "ps aux"
                 rtDockerPush(
                     serverId: "Artifactory-1",
                     image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER",

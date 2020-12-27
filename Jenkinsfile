@@ -13,15 +13,6 @@ pipeline {
                 }
             } 
         }
-        stage('Deploy our image') { 
-            steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-            }
-        } 
         stage('Testing the build') {
            steps {   
                script {
@@ -31,6 +22,15 @@ pipeline {
               }
            }
         }
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
         stage('Cleaning up') { 
             steps { 
                 sh "docker rmi $imageName:$BUILD_NUMBER" 

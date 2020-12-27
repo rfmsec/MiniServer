@@ -35,6 +35,8 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
+                sh "echo $PATH"
+                sh "echo `id`"
                 sh "java --version"
                 rtDockerPush(
                     serverId: "Artifactory-1",

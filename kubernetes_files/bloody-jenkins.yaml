@@ -25,7 +25,7 @@ spec:
         image: odavid/my-bloody-jenkins
         env:
         - name: JENKINS_ENV_CONFIG_YML_URL
-          value: "https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/jenkins-config.yaml,file:///var/jenkins_home/config.yaml"
+          value: "https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/jenkins-config.yaml"
         ports:
         - containerPort: 8080
         volumeMounts:

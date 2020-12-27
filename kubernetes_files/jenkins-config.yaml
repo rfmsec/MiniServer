@@ -155,18 +155,24 @@ jobs:
           definition {
               cpsScm {
                   scm {
-                      git('https://github.com/rfmsec/MiniServer.git','main')
+                      git {
+                          remote {
+                              url("https://github.com/rfmsec/MiniServer.git")
+                          }
+                          branch("*")
                       }
-                  scriptPath("Jenkinsfile")
                   }
-              triggers {
-                  githubPush()
+                  scriptPath("Jenkinsfile")
               }
-              disabled(false)
-              configure {
-                  it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
-                      'autoRebuild'('false')
-                      'rebuildDisabled'('false')
+          }
+          triggers {
+              githubPush()
+          }
+          disabled(false)
+          configure {
+              it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
+                  'autoRebuild'('false')
+                  'rebuildDisabled'('false')
               }
           }
       }

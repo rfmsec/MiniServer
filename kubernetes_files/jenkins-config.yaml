@@ -17,7 +17,6 @@ credentials:
           password: "{AQAAABAAAAAgkRg5g6rB9mvAOeKd/3CWGUU9uomaIORJPFLWDMfGzhkkuSJreOWX+CRlpuSR1z/Y}"
           scope: GLOBAL
           username: "rfmsec"
-
 jenkins:
   authorizationStrategy:
     globalMatrix:
@@ -48,22 +47,8 @@ jenkins:
       users:
       - id: "tomer"
         name: "Tomer"
-        properties:
-        - "apiToken"
-        - favoriting:
-            autofavoriteEnabled: true
-        - "favorite"
-        - "myView"
-        - preferredProvider:
-            providerId: "default"
-        - "user"
-        - samlCustomProperty:
-        - "slack"
-        - "timezone"
-        - "loginDetailsProperty"
         - mailer:
             emailAddress: "e@mail.com"
-  
 unclassified:
   artifactoryBuilder:
     artifactoryServers:
@@ -91,5 +76,3 @@ unclassified:
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://192.168.99.100:30800/"
-  pollSCM:
-    pollingThreadCount: 10

@@ -18,8 +18,7 @@ pipeline {
         stage('Building') { 
             steps { 
                 script { 
-                    dockerfile = 'Dockerfile'
-                    dockerImage = docker.build('192.168.99.100:30802/artifactory/miniserver-virtual/' + imageName + ":$BUILD_NUMBER", "-f ${dockerfile} .") 
+                    dockerImage = docker.build imageName + ":$BUILD_NUMBER"
                 }
             } 
         }

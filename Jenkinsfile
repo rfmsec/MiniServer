@@ -9,7 +9,7 @@ pipeline {
             steps { 
                 script { 
                     dockerfile = 'Dockerfile'
-                    dockerImage = docker.build('192.168.99.100:30802/miniserver-virtual/' + imageName + ":$BUILD_NUMBER", "-f ${dockerfile} .") 
+                    dockerImage = docker.build('192.168.99.100:30802/artifactory/miniserver-virtual/' + imageName + ":$BUILD_NUMBER", "-f ${dockerfile} .") 
                 }
             } 
         }
@@ -26,7 +26,7 @@ pipeline {
             steps { 
                 rtDockerPush(
                     serverId: "Art01"
-                    image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER"
+                    image: "192.168.99.100:30802/artifactory/miniserver-virtual/" + imageName + ":$BUILD_NUMBER"
                     targetRepo: 'miniserver'
                 ) 
             }

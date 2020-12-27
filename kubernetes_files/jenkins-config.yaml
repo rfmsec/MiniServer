@@ -74,21 +74,6 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
-security:
-  apiToken:
-    creationOfLegacyTokenEnabled: false
-    tokenGenerationOnCreationEnabled: false
-    usageStatisticsEnabled: true
-  copyartifact:
-    mode: PRODUCTION
-  envInject:
-    enableLoadingFromMaster: false
-    enablePermissions: false
-    hideInjectedVars: false
-  globalJobDslSecurityConfiguration:
-    useScriptSecurity: true
-  sSHD:
-    port: -1
 unclassified:
   artifactoryBuilder:
     artifactoryServers:
@@ -113,24 +98,8 @@ unclassified:
         username: "****"
       timeout: 300
     useCredentialsPlugin: true
-  gitHubConfiguration:
-    apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    hookUrl: "http://192.168.99.100:30800/github-webhook/"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://192.168.99.100:30800/"
-  mailer:
-    charset: "UTF-8"
-    useSsl: false
-    useTls: false
-  pluginImpl:
-    enableCredentialsFromNode: false
   pollSCM:
     pollingThreadCount: 10
-  timestamper:
-    allPipelines: false
-    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
-    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
-  upstream:
-    globalUpstreamFilterStrategy: UseOldest

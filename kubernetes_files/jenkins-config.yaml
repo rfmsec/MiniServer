@@ -4,17 +4,17 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "tomer"
-          password: "{AQAAABAAAAAQ2r06vMHstRcf4kFx7R/msaj/zuaulD2C+sER8wVB8mk=}"
+          password: "1234"
           scope: GLOBAL
           username: "tomer"
       - usernamePassword:
           id: "docker-credentials"
-          password: "{AQAAABAAAAAgJtVrinZCNgZKthuOOR2olJYt20uczpBRN1jTNJduGyT3uP2nN59QZol+vQg0soxX}"
+          password: "tJbwakVZwLcLfKmcj8Z8x8aGJD"
           scope: GLOBAL
           username: "sec911"
       - usernamePassword:
           id: "github-cred"
-          password: "{AQAAABAAAAAgkRg5g6rB9mvAOeKd/3CWGUU9uomaIORJPFLWDMfGzhkkuSJreOWX+CRlpuSR1z/Y}"
+          password: "VlLuVMVli8yKZSTkx6wrjtPL1I"
           scope: GLOBAL
           username: "rfmsec"
 jenkins:

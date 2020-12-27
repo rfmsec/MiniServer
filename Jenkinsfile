@@ -1,6 +1,7 @@
 pipeline {
     environment { 
         PATH = "$PATH:/opt/java/openjdk/bin"
+        JAVA_HOME = "/opt/java/openjdk/bin"
         imageName = "miniserver" 
         dockerImage = ''
     }

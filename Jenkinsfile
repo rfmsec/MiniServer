@@ -4,12 +4,12 @@ pipeline {
         registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
-    agent { dockerfile true }
     stages { 
         stage('Building') { 
             steps { 
                 script { 
-                    dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
+                    dockerfile = 'Dockerfile'
+                    dockerImage = docker.build('192.168.99.100:30802/miniserver-virtual/' + imageName + ":$BUILD_NUMBER", "-f ${dockerfile} .") 
                 }
             } 
         }
@@ -24,11 +24,11 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
+                rtDockerPush(
+                    serverId: "Art01"
+                    image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER"
+                    targetRepo: 'miniserver'
+                ) 
             }
         } 
         stage('Cleaning up') { 

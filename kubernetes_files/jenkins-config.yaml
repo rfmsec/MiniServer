@@ -57,9 +57,6 @@ jenkins:
             providerId: "default"
         - "user"
         - samlCustomProperty:
-            attributes: |-
-              FAILED TO EXPORT
-              org.jenkinsci.plugins.saml.user.SamlCustomProperty#attributes: No configurator found for type class org.jenkinsci.plugins.saml.user.SamlCustomProperty$Attribute
         - "slack"
         - "timezone"
         - "loginDetailsProperty"

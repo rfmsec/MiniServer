@@ -24,9 +24,15 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
+                rtServer (
+                    id: 'Artifactory-1',
+                    url: 'http://192.168.99.100:30802/artifactory',
+                    credentialsId: 'my-credentials-id',
+                )
+                
                 rtDockerPush(
-                    serverId: "Art01"
-                    image: "192.168.99.100:30802/artifactory/miniserver-virtual/" + imageName + ":$BUILD_NUMBER"
+                    serverId: "Artifactory-1"
+                    image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER"
                     targetRepo: 'miniserver'
                 ) 
             }

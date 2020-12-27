@@ -18,9 +18,6 @@ credentials:
           scope: GLOBAL
           username: "rfmsec"
 jenkins:
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
   authorizationStrategy:
     globalMatrix:
       permissions:
@@ -34,33 +31,16 @@ jenkins:
           uri: "unix:///var/run/docker.sock"
         readTimeout: 60
       name: "docker"
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
-  disableRememberMe: false
   disabledAdministrativeMonitors:
   - "jenkins.security.QueueItemAuthenticatorMonitor"
   - "jenkins.security.ResourceDomainRecommendation"
   - "jenkins.security.s2m.MasterKillSwitchWarning"
-  labelAtoms:
-  - name: "master"
-  markupFormatter: "plainText"
-  mode: NORMAL
-  myViewsTabBar: "standard"
   noUsageStatistics: true
   numExecutors: 2
-  primaryView:
-    all:
-      name: "all"
-  projectNamingStrategy: "standard"
-  quietPeriod: 5
-  remotingSecurity:
-    enabled: false
-  scmCheckoutRetryCount: 0
+  quietPeriod: 3
   securityRealm:
     local:
       allowsSignup: false
-      enableCaptcha: false
       users:
       - id: "tomer"
         name: "Tomer"
@@ -68,25 +48,11 @@ jenkins:
         - "apiToken"
         - favoriting:
             autofavoriteEnabled: true
-        - "favorite"
-        - "myView"
         - preferredProvider:
             providerId: "default"
-        - "user"
-        - "slack"
-        - "timezone"
-        - "loginDetailsProperty"
         - mailer:
             emailAddress: "e@mail.com"
-  slaveAgentPort: 50000
-  updateCenter:
-    sites:
-    - id: "default"
-      url: "https://updates.jenkins.io/update-center.json"
-  views:
-  - all:
-      name: "all"
-  viewsTabBar: "standard"
+  slaveAgentPort: 50000 
 security:
   apiToken:
     creationOfLegacyTokenEnabled: false

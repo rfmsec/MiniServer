@@ -35,7 +35,9 @@ pipeline {
             steps { 
                 sh "pwd"
                 sh "ls"
-                sh "ls /"
+                sh "ls /opt/"
+                sh "ls /opt/java/"
+                sh "ls /opt/java/openjdk/"
                 sh "ls /opt/java/openjdk/bin/"
                 rtDockerPush(
                     serverId: "Artifactory-1",

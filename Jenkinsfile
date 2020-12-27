@@ -6,11 +6,6 @@ pipeline {
     }
     agent { dockerfile true }
     stages { 
-        stage('Cloning MiniServer repo') { 
-            steps { 
-                git 'https://github.com/rfmsec/MiniServer.git' 
-            }
-        } 
         stage('Building') { 
             steps { 
                 script { 

@@ -1,14 +1,9 @@
 pipeline {
     environment { 
-        PATH = "$PATH:/opt/java/openjdk/bin"
-        JAVA_HOME = "/opt/java/openjdk/bin"
         imageName = "miniserver" 
         dockerImage = ''
     }
     agent { dockerfile true }
-    tools {
-        jdk 'openjdk-11'
-    }
     stages { 
         stage('Artifactory configuration') {
             steps {
@@ -39,7 +34,7 @@ pipeline {
         stage('Deploy our image') { 
             steps { 
                 sh "echo $PATH"
-                sh "/opt/java/openjdk/bin/java --version"
+                sh "ls /opt/java/openjdk/bin/"
                 sh "id"
                 rtDockerPush(
                     serverId: "Artifactory-1",

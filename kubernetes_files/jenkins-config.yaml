@@ -134,22 +134,3 @@ unclassified:
     systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
   upstream:
     globalUpstreamFilterStrategy: UseOldest
-tool:
-  dockerTool:
-    installations:
-    - name: "docker"
-      properties:
-      - installSource:
-          installers:
-          - fromDocker:
-              version: "latest"
-  git:
-    installations:
-    - home: "git"
-      name: "Default"
-  pipelineMaven:
-    triggerDownstreamUponResultAborted: false
-    triggerDownstreamUponResultFailure: false
-    triggerDownstreamUponResultNotBuilt: false
-    triggerDownstreamUponResultSuccess: true
-    triggerDownstreamUponResultUnstable: false

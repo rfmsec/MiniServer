@@ -24,7 +24,7 @@ spec:
         ports:
         - containerPort: 8081
           name: jfrog-http
-        - containerPort: 8082
+        - containerPort: 8045
           name: jfrog-https
         volumeMounts:
           - name: artifactory-jcr
@@ -48,6 +48,6 @@ spec:
       targetPort: 8081
       nodePort: 30801
     - name: jfrog-https
-      port: 8082
-      targetPort: 8082
+      port: 8045
+      targetPort: 8045
       nodePort: 30802

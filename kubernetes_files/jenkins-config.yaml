@@ -17,6 +17,7 @@ credentials:
           password: "{AQAAABAAAAAgkRg5g6rB9mvAOeKd/3CWGUU9uomaIORJPFLWDMfGzhkkuSJreOWX+CRlpuSR1z/Y}"
           scope: GLOBAL
           username: "rfmsec"
+
 jenkins:
   authorizationStrategy:
     globalMatrix:
@@ -62,15 +63,7 @@ jenkins:
         - "loginDetailsProperty"
         - mailer:
             emailAddress: "e@mail.com"
-  slaveAgentPort: 50000
-  updateCenter:
-    sites:
-    - id: "default"
-      url: "https://updates.jenkins.io/update-center.json"
-  views:
-  - all:
-      name: "all"
-  viewsTabBar: "standard"
+  
 unclassified:
   artifactoryBuilder:
     artifactoryServers:

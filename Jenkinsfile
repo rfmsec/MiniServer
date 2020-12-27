@@ -27,7 +27,7 @@ pipeline {
                 rtServer (
                     id: 'Artifactory-1',
                     url: 'http://192.168.99.100:30802/artifactory',
-                    credentialsId: 'my-credentials-id',
+                    credentialsId: 'tomer',
                 )
                 
                 rtDockerPush(

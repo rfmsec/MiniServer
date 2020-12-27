@@ -147,10 +147,6 @@ tool:
           installers:
           - fromDocker:
               version: "latest"
-  git:
-    installations:
-    - home: "git"
-      name: "Default"
 jobs:
   - script: >
       pipelineJob("GitHub_MiniServer_pipe") {

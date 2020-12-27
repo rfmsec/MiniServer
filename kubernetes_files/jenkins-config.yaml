@@ -151,12 +151,6 @@ tool:
     installations:
     - home: "git"
       name: "Default"
-  pipelineMaven:
-    triggerDownstreamUponResultAborted: false
-    triggerDownstreamUponResultFailure: false
-    triggerDownstreamUponResultNotBuilt: false
-    triggerDownstreamUponResultSuccess: true
-    triggerDownstreamUponResultUnstable: false
 jobs:
   - script: >
       pipelineJob("GitHub_MiniServer_pipe") {

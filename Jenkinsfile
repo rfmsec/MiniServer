@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps {
-                echo PATH Variable is: $PATH
+                sh "echo PATH Variable is: $PATH"
                 rtDockerPush(
                     serverId: "Artifactory-1",
                     image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER",

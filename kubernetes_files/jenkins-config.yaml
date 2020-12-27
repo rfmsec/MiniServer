@@ -158,13 +158,15 @@ jobs:
                       git {
                           remote {
                               github("rfmsec/MiniServer", "https")
-                              credentials("github-cred")
                           }
                           branch("*")
                       }
                   }
                   scriptPath("Jenkinsfile")
               }
+          }
+          triggers {
+              githubPush()
           }
           disabled(false)
           configure {

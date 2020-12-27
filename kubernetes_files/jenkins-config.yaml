@@ -18,6 +18,9 @@ credentials:
           scope: GLOBAL
           username: "rfmsec"
 jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
   authorizationStrategy:
     globalMatrix:
       permissions:
@@ -31,14 +34,29 @@ jenkins:
           uri: "unix:///var/run/docker.sock"
         readTimeout: 60
       name: "docker"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
   disableRememberMe: false
   disabledAdministrativeMonitors:
   - "jenkins.security.QueueItemAuthenticatorMonitor"
   - "jenkins.security.ResourceDomainRecommendation"
   - "jenkins.security.s2m.MasterKillSwitchWarning"
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
   mode: NORMAL
+  myViewsTabBar: "standard"
   noUsageStatistics: true
   numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
   securityRealm:
     local:
       allowsSignup: false
@@ -46,5 +64,138 @@ jenkins:
       users:
       - id: "tomer"
         name: "Tomer"
+        properties:
+        - "apiToken"
+        - favoriting:
+            autofavoriteEnabled: true
+        - "favorite"
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "user"
+        - "slack"
+        - "timezone"
+        - "loginDetailsProperty"
         - mailer:
             emailAddress: "e@mail.com"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  copyartifact:
+    mode: PRODUCTION
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+unclassified:
+  artifactoryBuilder:
+    artifactoryServers:
+    - artifactoryUrl: "http://192.168.99.100:30802/artifactory"
+      bypassProxy: false
+      connectionRetry: 3
+      deployerCredentialsConfig:
+        credentialsId: "tomer"
+        overridingCredentials: false
+        password: "{AQAAABAAAAAQidEUzw5YwSyvck5zq4JEC9qoaAXcXusuoBAjzR2v2tU=}"
+        username: "****"
+      deploymentThreads: 3
+      serverId: "Art01"
+      timeout: 300
+    jfrogPipelinesServer:
+      bypassProxy: false
+      connectionRetries: 3
+      credentialsConfig:
+        ignoreCredentialPluginDisabled: true
+        overridingCredentials: false
+        password: "{AQAAABAAAAAQVvi3TcaLfKi1J1stH1R64tlXSVOVg1cKgVchyM5ABsw=}"
+        username: "****"
+      timeout: 300
+    useCredentialsPlugin: true
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpPassword: "{AQAAABAAAAAQ6AEZQXU3sAmG/2b3mU5kl7Hqlk/3Kk2b2FbV1SLrYGw=}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.99.100:30800/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  imageTagParameterConfiguration:
+    defaultRegistry: "https://registry-1.docker.io"
+    defaultTagOrdering: NATURAL
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://192.168.99.100:30800/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  upstream:
+    globalUpstreamFilterStrategy: UseOldest
+tool:
+  dockerTool:
+    installations:
+    - name: "docker"
+      properties:
+      - installSource:
+          installers:
+          - fromDocker:
+              version: "latest"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  pipelineMaven:
+    triggerDownstreamUponResultAborted: false
+    triggerDownstreamUponResultFailure: false
+    triggerDownstreamUponResultNotBuilt: false
+    triggerDownstreamUponResultSuccess: true
+    triggerDownstreamUponResultUnstable: false

@@ -1,7 +1,6 @@
 pipeline {
     environment { 
         imageName = "sec911/miniserver" 
-        registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
     agent { dockerfile true }

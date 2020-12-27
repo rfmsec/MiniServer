@@ -5,7 +5,9 @@ pipeline {
         dockerImage = ''
     }
     agent { dockerfile true }
-
+    tools {
+        jdk 'JAVA_HOME'
+    }
     stages { 
         stage('Artifactory configuration') {
             steps {

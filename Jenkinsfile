@@ -3,7 +3,11 @@ pipeline {
         imageName = "miniserver" 
         dockerImage = ''
     }
-    agent { dockerfile true }
+    agent { 
+        docker {
+            dockerfile true 
+        }
+    }
     stages { 
         stage('Artifactory configuration') {
             steps {
@@ -33,7 +37,7 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
-                docker.image("openjdk:14").inside("-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock --group-add ${env.DOCKER_GRP_ID}") {
+                docker.image("openjdk:14").inside("-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock") {
                     rtDockerPush(
                         serverId: "Artifactory-1",
                         image: "192.168.99.100:30802/miniserver-virtual/" + imageName + ":$BUILD_NUMBER",

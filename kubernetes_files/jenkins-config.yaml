@@ -43,15 +43,7 @@ jenkins:
       allowsSignup: false
       users:
       - id: "tomer"
-        name: "Tomer"
-        properties:
-        - "apiToken"
-        - favoriting:
-            autofavoriteEnabled: true
-        - preferredProvider:
-            providerId: "default"
-        - mailer:
-            emailAddress: "e@mail.com"
+        password: "1234"
   slaveAgentPort: 50000 
 security:
   apiToken:

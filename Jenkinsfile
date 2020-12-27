@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        imageName = "sec911/miniserver" 
+        imageName = "miniserver" 
         dockerImage = ''
     }
     agent { dockerfile true }

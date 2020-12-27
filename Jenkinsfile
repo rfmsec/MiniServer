@@ -8,8 +8,7 @@ pipeline {
     stages { 
         stage('Cloning MiniServer repo') { 
             steps { 
-                git branch: 'main'
-                url: 'https://github.com/rfmsec/MiniServer.git' 
+                git 'https://github.com/rfmsec/MiniServer.git' 
             }
         } 
         stage('Building') { 

@@ -4,6 +4,7 @@ pipeline {
         registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
+    agent { dockerfile true }
     stages { 
         stage('Artifactory configuration') {
             steps {

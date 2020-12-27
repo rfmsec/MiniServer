@@ -9,7 +9,7 @@ pipeline {
             steps {
                 rtServer (
                     id: 'Artifactory-1',
-                    url: '192.168.99.100:30802/artifactory',
+                    url: 'http://192.168.99.100:30802/artifactory',
                     username: 'tomer',
                     password: 'Aa123456'
                 )

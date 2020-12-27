@@ -8,10 +8,15 @@ credentials:
           scope: GLOBAL
           username: "tomer"
       - usernamePassword:
-          id: "artifactory"
-          password: "Aa123456"
+          id: "docker-credentials"
+          password: "tJbwakVZwLcLfKmcj8Z8x8aGJD"
           scope: GLOBAL
-          username: "tomer"
+          username: "sec911"
+      - usernamePassword:
+          id: "github-cred"
+          password: "VlLuVMVli8yKZSTkx6wrjtPL1I"
+          scope: GLOBAL
+          username: "rfmsec"
 jenkins:
   authorizationStrategy:
     globalMatrix:
@@ -62,12 +67,12 @@ unclassified:
       bypassProxy: false
       connectionRetry: 3
       deployerCredentialsConfig:
-        credentialsId: "artifactory"
+        credentialsId: "tomer"
         overridingCredentials: false
         password: "{AQAAABAAAAAQidEUzw5YwSyvck5zq4JEC9qoaAXcXusuoBAjzR2v2tU=}"
         username: "****"
       deploymentThreads: 3
-      serverId: "Artifactory-1"
+      serverId: "Art01"
       timeout: 300
     jfrogPipelinesServer:
       bypassProxy: false
@@ -150,24 +155,18 @@ jobs:
           definition {
               cpsScm {
                   scm {
-                      git {
-                          remote {
-                              github("rfmsec/MiniServer", "https")
-                          }
-                          branch("*")
+                      git('https://github.com/rfmsec/MiniServer.git','main')
                       }
-                  }
                   scriptPath("Jenkinsfile")
+                  }
+              triggers {
+                  githubPush()
               }
-          }
-          triggers {
-              githubPush()
-          }
-          disabled(false)
-          configure {
-              it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
-                  'autoRebuild'('false')
-                  'rebuildDisabled'('false')
+              disabled(false)
+              configure {
+                  it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
+                      'autoRebuild'('false')
+                      'rebuildDisabled'('false')
               }
           }
       }

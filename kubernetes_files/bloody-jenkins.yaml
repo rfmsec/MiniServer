@@ -19,7 +19,6 @@ spec:
         app: jenkins
     spec:
       securityContext:
-        privileged: true
         fsGroup: 1000
       containers:
       - name: jenkins
@@ -44,7 +43,7 @@ spec:
             path: /var/run/docker.sock
         - name: docker-executable
           hostPath:
-            path:/usr/bin/docker
+            path: /usr/bin/docker
 ---
 apiVersion: v1
 kind: Service

@@ -22,10 +22,12 @@ spec:
         fsGroup: 1000
       containers:
       - name: jenkins
-        image: odavid/my-bloody-jenkins
+        image: odavid/my-bloody-jenkins:lts-jdk11
         env:
         - name: JENKINS_ENV_CONFIG_YML_URL
           value: "file:///var/jenkins_home/config.yaml"
+        - name: JENKINS_ENV_CONFIG_MODE
+          value: jcasc
         ports:
         - containerPort: 8080
         volumeMounts:

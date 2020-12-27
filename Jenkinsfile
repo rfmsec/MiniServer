@@ -7,7 +7,7 @@ pipeline {
     }
     agent { dockerfile true }
     tools {
-        jdk 'JAVA_HOME'
+        jdk 'openjdk-11'
     }
     stages { 
         stage('Artifactory configuration') {

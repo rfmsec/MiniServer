@@ -37,7 +37,6 @@ jenkins:
   - "jenkins.security.ResourceDomainRecommendation"
   - "jenkins.security.s2m.MasterKillSwitchWarning"
   mode: NORMAL
-  myViewsTabBar: "standard"
   noUsageStatistics: true
   numExecutors: 2
   securityRealm:
@@ -49,30 +48,3 @@ jenkins:
         name: "Tomer"
         - mailer:
             emailAddress: "e@mail.com"
-unclassified:
-  artifactoryBuilder:
-    artifactoryServers:
-    - artifactoryUrl: "http://192.168.99.100:30802/artifactory"
-      bypassProxy: false
-      connectionRetry: 3
-      deployerCredentialsConfig:
-        credentialsId: "tomer"
-        overridingCredentials: false
-        password: "{AQAAABAAAAAQidEUzw5YwSyvck5zq4JEC9qoaAXcXusuoBAjzR2v2tU=}"
-        username: "****"
-      deploymentThreads: 3
-      serverId: "Art01"
-      timeout: 300
-    jfrogPipelinesServer:
-      bypassProxy: false
-      connectionRetries: 3
-      credentialsConfig:
-        ignoreCredentialPluginDisabled: true
-        overridingCredentials: false
-        password: "{AQAAABAAAAAQVvi3TcaLfKi1J1stH1R64tlXSVOVg1cKgVchyM5ABsw=}"
-        username: "****"
-      timeout: 300
-    useCredentialsPlugin: true
-  location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://192.168.99.100:30800/"

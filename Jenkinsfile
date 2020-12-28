@@ -1,8 +1,8 @@
 pipeline {
     environment { 
-        imageName = "miniserver" 
+        imageName = "miniserver/miniserver" 
         registryCredential = 'tomer'
-        registryUrl = 'http://192.168.99.100:30802/artifactory/miniserver/'
+        registryUrl = 'http://192.168.99.100:30802/miniserver/'
         dockerImage = ''
     }
     agent { dockerfile true }
@@ -27,7 +27,7 @@ pipeline {
             steps { 
                 script { 
                     docker.withRegistry( registryUrl, registryCredential ) { 
-                        dockerImage.push('latest') 
+                        dockerImage.push() 
                     }
                 } 
             }

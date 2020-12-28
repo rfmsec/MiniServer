@@ -28,7 +28,7 @@ pipeline {
                 script { 
                     docker.withRegistry( registryUrl, registryCredential ) { 
                         dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
-                        dockerImage.push() 
+                        dockerImage.push('latest') 
                     }
                 } 
             }

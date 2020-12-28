@@ -10,7 +10,7 @@ pipeline {
         stage('Building') { 
             steps { 
                 script { 
-                    dockerImage = docker.build(registryUrl + "/" + imageName + ":$BUILD_NUMBER")
+                    dockerImage = docker.build(registryUrl + imageName + ":$BUILD_NUMBER")
                 }
             } 
         }

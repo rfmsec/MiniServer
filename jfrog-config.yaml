@@ -1,0 +1,15 @@
+configVersion: 1
+
+shared:
+  node:
+    id: "art01"
+    ip: "192.168.99.100"
+
+artifactory:
+  port: 8081
+  tomcat:
+    httpsConnector:
+      enabled: true
+      port: 8082
+      certificateFile: "$JFROG_HOME/artifactory/var/etc/artifactory/security/ssl/server.crt"
+      certificateKeyFile: "$JFROG_HOME/artifactory/var/etc/artifactory/security/ssl/server.key"

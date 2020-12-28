@@ -4,7 +4,7 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "tomer"
-          password: "1234"
+          password: "Aa123456"
           scope: GLOBAL
           username: "tomer"
 jenkins:

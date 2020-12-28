@@ -169,10 +169,4 @@ jobs:
               githubPush()
           }
           disabled(false)
-          configure {
-              it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
-                  'autoRebuild'('false')
-                  'rebuildDisabled'('false')
-              }
-          }
       }

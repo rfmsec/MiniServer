@@ -9,7 +9,7 @@ kubectl create -f https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files
 kubectl create -f https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/jenkins.yaml
 
 echo Creating variables with the JFrog and Jenkins pods names...
-for /F "tokens=1" %%i in ('kubectl get pods -n artifactory-pro ^| findstr /i "artifactory"') do set ART_POD_NAME=%%i
+for /F "tokens=1" %%i in ('kubectl get pods -n artifactory ^| findstr /i "artifactory"') do set ART_POD_NAME=%%i
 for /F "tokens=1" %%i in ('kubectl get pods -n jenkins ^| findstr /i "jenkins"') do set JEN_POD_NAME=%%i
 
 echo Waiting for jfrog to start its web services...

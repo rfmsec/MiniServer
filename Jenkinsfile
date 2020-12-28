@@ -1,8 +1,8 @@
 pipeline {
     environment { 
-        imageName = "miniserver" 
+        imageName = "MiniServer" 
         registryCredential = 'tomer'
-        registryUrl = 'http://192.168.99.100:30802/artifactory/miniserver/'
+        registryUrl = '192.168.99.100:30802/miniserver/'
         dockerImage = ''
     }
     agent { dockerfile true }
@@ -10,7 +10,7 @@ pipeline {
         stage('Building') { 
             steps { 
                 script { 
-                    dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build(registryUrl + "/" + imageName + ":$BUILD_NUMBER")
                 }
             } 
         }

@@ -34,6 +34,7 @@ pipeline {
         } 
         stage('Cleaning up') { 
             steps { 
+                sh "docke rmi python:3"
                 sh "docker rmi $imageName:$BUILD_NUMBER" 
             }
         } 

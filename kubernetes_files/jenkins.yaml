@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: bloody-jenkins
+  name: jenkins
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
-  namespace: bloody-jenkins
+  namespace: jenkins
 spec:
   replicas: 1
   selector:
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins
-  namespace: bloody-jenkins
+  namespace: jenkins
 spec:
   type: NodePort
   ports:

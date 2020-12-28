@@ -1,53 +1,53 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: artifactory-oss
+  name: artifactory
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: artifactory-oss
-  namespace: artifactory-oss
+  name: artifactory-pro
+  namespace: artifactory
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: artifactory-oss
+      app: artifactory-pro
   template:
     metadata:
       labels:
-        app: artifactory-oss
+        app: artifactory-pro
     spec:
       containers:
-      - name: artifactory-oss
-        image: docker.bintray.io/jfrog/artifactory-oss:latest
+      - name: artifactory-pro
+        image: docker.bintray.io/jfrog/artifactory-pro:latest
         ports:
         - containerPort: 8081
           name: jfrog-http
         - containerPort: 8082
-          name: jfrog-https
+          name: jfrog-router
         volumeMounts:
-          - name: artifactory-oss
-            mountPath: /var/artifactory-oss
+          - name: artifactory-pro
+            mountPath: /var/artifactory-pro
       volumes:
-        - name: artifactory-oss
+        - name: artifactory-pro
           emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: artifactory-oss
-  namespace: artifactory-oss
+  name: artifactory-pro
+  namespace: artifactory
 spec:
   type: NodePort
   selector:
-    app: artifactory-oss
+    app: artifactory-pro
   ports:
     - name: jfrog-http
       port: 8081
       targetPort: 8081
       nodePort: 30801
-    - name: jfrog-https
+    - name: jfrog-router
       port: 8082
       targetPort: 8082
       nodePort: 30802

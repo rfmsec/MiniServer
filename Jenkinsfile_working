@@ -1,8 +1,7 @@
 pipeline {
     environment { 
-        imageName = "miniserver" 
-        registryCredential = 'tomer'
-        registryUrl = 'http://192.168.99.100:30802/'
+        imageName = "sec911/miniserver" 
+        registryCredential = 'docker-credentials' 
         dockerImage = ''
     }
     agent { dockerfile true }
@@ -26,7 +25,7 @@ pipeline {
         stage('Deploy our image') { 
             steps { 
                 script { 
-                    docker.withRegistry( registryUrl, registryCredential ) { 
+                    docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
                 } 

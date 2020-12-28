@@ -2,7 +2,7 @@ pipeline {
     environment { 
         imageName = "miniserver" 
         registryCredential = 'tomer'
-        registryUrl = 'http://192.168.99.100:30802/'
+        registryUrl = 'http://192.168.99.100:30802/artifactory/miniserver/'
         dockerImage = ''
     }
     agent { dockerfile true }

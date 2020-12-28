@@ -3,7 +3,7 @@ pipeline {
         imageName = "miniserver" 
         dockerImage = ''
     }
-    agent { dockerfile true }
+    agent any
     stages { 
         stage('Artifactory configuration') {
             steps {
@@ -21,6 +21,15 @@ pipeline {
                     dockerImage = docker.build imageName + ":$BUILD_NUMBER"
                 }
             } 
+        }
+        stage('Testing the build') {
+           steps {   
+               script {
+                  dockerImage.inside() {
+                     'curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/'
+                }
+              }
+           }
         }
         stage('Deploy our image') { 
             steps { 

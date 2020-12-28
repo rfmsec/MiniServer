@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        imageName = "MiniServer" 
+        imageName = "miniserver" 
         registryCredential = 'tomer'
         registryUrl = '192.168.99.100:30802/miniserver/'
         dockerImage = ''
@@ -10,7 +10,7 @@ pipeline {
         stage('Building') { 
             steps { 
                 script { 
-                    dockerImage = docker.build(registryUrl + imageName + ":$BUILD_NUMBER")
+                    dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
                 }
             } 
         }
@@ -27,6 +27,7 @@ pipeline {
             steps { 
                 script { 
                     docker.withRegistry( registryUrl, registryCredential ) { 
+                        dockerImage = docker.build imageName + ":$BUILD_NUMBER" 
                         dockerImage.push() 
                     }
                 } 

@@ -160,6 +160,29 @@ jobs:
           }
           disabled(false)
       }
+      
+       pipelineJob("GitHub_MiniServer_pipe2") {
+          description()
+          keepDependencies(false)
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                          remote {
+                              url("https://github.com/rfmsec/MiniServer.git")
+                          }
+                          branch("*")
+                      }
+                  }
+                  scriptPath("Jenkinsfile")
+              }
+          }
+          triggers {
+              githubPush()
+          }
+          disabled(false)
+      }
+      
       pipelineJob("Deploy_Artifacts") {
           description()
           properties {

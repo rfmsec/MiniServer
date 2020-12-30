@@ -185,8 +185,7 @@ jobs:
         }
         definition {
           cps {
-            script('''
-      pipeline {
+            script('''pipeline {
         environment { 
           imageName = "miniserver/miniserver"
           registryCredential = 'tomer'
@@ -197,15 +196,18 @@ jobs:
         stages {
           stage('Pulling the latest image') {
             steps {
-              docker.withRegistry(registryUrl,registryCredential) {
-                dockerImage = docker.image(imageName)
-                dockerImage.pull()
+                script {
+                  docker.withRegistry(registryUrl,registryCredential) {
+                    dockerImage = docker.image(imageName)
+                    dockerImage.pull()
+                }
               }
             }
           }
         }
       }
       ''')
+      sandbox()
           }
         }
       }

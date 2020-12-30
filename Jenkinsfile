@@ -17,7 +17,9 @@ pipeline {
         stage('Testing the build') {
            steps {   
                script {
-                   sh 'curl http://localhost:8080/'
+                   dockerImage.inside() {
+                       sh 'curl http://localhost:8080/'
+                   }
               }
            }
         }

@@ -17,9 +17,8 @@ pipeline {
         stage('Testing the build') {
            steps {   
                script {
-                   sh 'docker run --rm ' + imageName + ":$BUILD_NUMBER"
-                   sh 'docker ps'
-                   sh 'docker exec ' + imageName + ":$BUILD_NUMBER" + ' curl http://localhost:8080/'
+                   sh 'docker run -d --rm  --name=miniserver ' + imageName + ":$BUILD_NUMBER"
+                   sh 'docker exec miniserver curl http://localhost:8080/'
               }
            }
         }

@@ -169,11 +169,11 @@ jobs:
                 GenericTrigger {
                   genericVariable {
                     key('ARTIFACT_NAME')
-                    value('$.artifactory.webhook.data.name')
+                    value("\$.artifactory.webhook.data.name")
                   }
                   genericVariable {
                     key('EVENT_NAME')
-                    value('$.artifactory.webhook.event')
+                    value("\$.artifactory.webhook.event")
                   }
                   causeString: 'Triggered on $ARTIFACT_NAME',
                   regexpFilterText: '$EVENT_NAME-$ARTIFACT_NAME',

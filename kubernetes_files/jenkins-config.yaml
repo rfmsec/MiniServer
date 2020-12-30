@@ -162,41 +162,37 @@ jobs:
       }
   - script: >
       pipelineJob("Deploy_Artifacts") {
-          description()
-          properties {
-            pipelineTriggers {
-              triggers {
-                GenericTrigger {
-                  genericVariables {
-                    genericVariable {
-                      key("ARTIFACT_NAME")
-                      value("\$.artifactory.webhook.data.name")
-                    }
-                    genericVariable {
-                      key("EVENT_NAME")
-                      value("\$.artifactory.webhook.event")
-                    }
-                  }
-                  causeString("Triggered on \$ARTIFACT_NAME")
-                  regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
-                  regexpFilterExpression("storage\\.afterCreate-SuperPackage")
-                  printContributedVariables(true)
-                }     
+        description()
+        properties {
+          pipelineTriggers {
+            triggers {
+              GenericTrigger(
+                genericVariables: [
+                  [key: 'ARTIFACT_NAME', value: '$.artifactory.webhook.data.name'],
+                  [key: 'EVENT_NAME', value: '$.artifactory.webhook.event']
+                ],
+                causeString: 'Triggered on $ARTIFACT_NAME',
+                printContributedVariables: true,
+                regexpFilterText: '$EVENT_NAME-$ARTIFACT_NAME',
+                regexpFilterExpression: "storage\\.afterCreate-SuperPackage"
+              )
+                }
+                causeString("Triggered on \$ARTIFACT_NAME")
+                printContributedVariables(true)
+              }     
+            }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("https://github.com/rfmsec/MiniServer.git")
+                }
+                branch("*")
               }
             }
+            scriptPath("Jenkinsfile2")
           }
-          definition {
-              cpsScm {
-                  scm {
-                      git {
-                          remote {
-                              url("https://github.com/rfmsec/MiniServer.git")
-                          }
-                          branch("*")
-                      }
-                  }
-                  scriptPath("Jenkinsfile2")
-              }
-          }
-          disabled(false)
+        }
+        disabled(false)
       }

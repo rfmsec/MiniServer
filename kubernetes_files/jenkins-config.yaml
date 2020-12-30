@@ -160,31 +160,3 @@ jobs:
           }
           disabled(false)
       }
-      pipelineJob("Deploy") {
-        description()
-        keepDependencies(false)
-        definition {
-            cpsScm {
-      """pipeline {
-          triggers {
-              GenericTrigger(
-                  genericVariables: [
-                      [key: 'ARTIFACT_NAME', value: '$.artifactory.webhook.data.name'],
-                      [event: 'EVENT_NAME',  value: '$.artifactory.webhook.event']
-                  ],
-                  causeString: 'Triggered on $ARTIFACT_NAME',
-      
-                  regexpFilterText: '$EVENT_NAME-$ARTIFACT_NAME',
-                  regexpFilterExpression: 'storage\\.afterCreate-SuperPackage'
-                )
-        }
-      }"""      }
-        }
-        disabled(false)
-        configure {
-            it / 'properties' / 'com.sonyericsson.rebuild.RebuildSettings' {
-                'autoRebuild'('false')
-                'rebuildDisabled'('false')
-            }
-        }
-      }

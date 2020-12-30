@@ -160,3 +160,15 @@ jobs:
           }
           disabled(false)
       }
+
+      pipelineJob("Deploy_New_Artifacts") {
+          triggers {
+              GenericTrigger(
+                  genericVariables: [
+                      [key: 'ARTIFACT_NAME', value: '$.artifactory.webhook.data.name'],
+                      [event: 'EVENT_NAME',  value: '$.artifactory.webhook.event']
+                  ],
+                  causeString: 'Triggered on $ARTIFACT_NAME',
+          	  )
+      	  }
+      }

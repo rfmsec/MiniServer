@@ -19,7 +19,6 @@ spec:
         app: jenkins
     spec:
       securityContext:
-        # fsGroup: 1000
       containers:
       - name: jenkins
         image: odavid/my-bloody-jenkins:lts-jdk11
@@ -28,6 +27,8 @@ spec:
           value: "https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/jenkins-config.yaml"
         - name: JENKINS_ENV_CONFIG_MODE
           value: jcasc
+        - name: JENKINS_ENV_PLUGINS
+          value: generic-webhook-trigger
         ports:
         - containerPort: 8080
         volumeMounts:

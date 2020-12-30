@@ -185,29 +185,30 @@ jobs:
         }
         definition {
           cps {
-            script('''pipeline {
-        environment { 
-          imageName = "miniserver/miniserver"
-          registryCredential = 'tomer'
-          registryUrl = 'http://192.168.99.100:30802/miniserver/'
-          dockerImage = ''
-        }
-        agent any
-        stages {
-          stage('Pulling the latest image') {
-            steps {
-                script {
-                  docker.withRegistry(registryUrl,registryCredential) {
-                    dockerImage = docker.image(imageName)
-                    dockerImage.pull()
+            script('''
+              pipeline {
+                environment { 
+                  imageName = "miniserver/miniserver"
+                  registryCredential = 'tomer'
+                  registryUrl = 'http://192.168.99.100:30802/miniserver/'
+                  dockerImage = ''
+                }
+                agent any
+                stages {
+                  stage('Pulling the latest image') {
+                    steps {
+                      script {
+                        docker.withRegistry(registryUrl,registryCredential) {
+                        dockerImage = docker.image(imageName)
+                        dockerImage.pull()
+                        }
+                      }
+                    }
+                  }
                 }
               }
-            }
-          }
-        }
-      }
-      '''.stripIndent())
-      sandbox()
+            '''.stripIndent())
+            sandbox()
           }
         }
       }

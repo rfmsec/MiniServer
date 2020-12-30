@@ -162,39 +162,33 @@ jobs:
       }
   - script: >
       pipelineJob("Deploy_Artifacts") {
-          description()
-              triggers {
-                GenericTrigger {
-                  causeString("Triggered on \$ARTIFACT_NAME")
-                  genericVariables {
-                    genericVariable {
-                      key("ARTIFACT_NAME")
-                      value("\$.artifactory.webhook.data.name")
-                      expressionType('JSONPath')
-                    }
-                    genericVariable {
-                      key("EVENT_NAME")
-                      value("\$.artifactory.webhook.event")
-                      expressionType('JSONPath')
-                    }
-                  }
-                  printContributedVariables(true)
-                  regexpFilterExpression("storage\\.afterCreate-SuperPackage")
-                  regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
-                }     
+        description()
+        triggers {
+          GenericTrigger {
+            causeString("Triggered on \$ARTIFACT_NAME")
+            genericVariables {
+              genericVariable {
+                key("ARTIFACT_NAME")
+                value("\$.artifactory.webhook.data.name")
+                expressionType('JSONPath')
               }
-          definition {
-              cpsScm {
-                  scm {
-                      git {
-                          remote {
-                              url("https://github.com/rfmsec/MiniServer.git")
-                          }
-                          branch("*")
-                      }
-                  }
-                  scriptPath("Jenkinsfile2")
+              genericVariable {
+                key("EVENT_NAME")
+                value("\$.artifactory.webhook.event")
+                expressionType('JSONPath')
               }
+            }
+            printContributedVariables(true)
+            regexpFilterExpression("storage\\.afterCreate-SuperPackage")
+            regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
           }
-          disabled(false)
+        }
+        stages {
+          stage('Deploy the new artifact') {
+            steps {
+              sh "echo $EVENT_NAME"
+              sh "echo $ARTIFACT_NAME"
+            }
+          }
+        }
       }

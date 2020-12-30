@@ -160,3 +160,32 @@ jobs:
           }
           disabled(false)
       }
+      pipelineJob("Deploy_Artifacts") {
+          description()
+          keepDependencies(false)
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                          remote {
+                              url("https://github.com/rfmsec/MiniServer.git")
+                          }
+                          branch("*")
+                      }
+                  }
+                  scriptPath("Jenkinsfile2")
+              }
+          }
+          triggers {
+              GenericTrigger(
+                  genericVariables: [
+                      [key: 'ARTIFACT_NAME', value: '$.artifactory.webhook.data.name'],
+                      [event: 'EVENT_NAME',  value: '$.artifactory.webhook.event']
+                  ],
+                  causeString: 'Triggered on $ARTIFACT_NAME',
+                  regexpFilterText: '$EVENT_NAME-$ARTIFACT_NAME',
+                  regexpFilterExpression: 'storage\\.afterCreate-SuperPackage'
+                )
+        }
+          disabled(false)
+      }

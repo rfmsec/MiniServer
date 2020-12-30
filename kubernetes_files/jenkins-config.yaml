@@ -163,28 +163,26 @@ jobs:
   - script: >
       pipelineJob("Deploy_Artifacts") {
           description()
-          options {
-            pipelineTriggers {
               triggers {
                 GenericTrigger {
+                  causeString("Triggered on \$ARTIFACT_NAME")
                   genericVariables {
                     genericVariable {
                       key("ARTIFACT_NAME")
                       value("\$.artifactory.webhook.data.name")
+                      expressionType('JSONPath')
                     }
                     genericVariable {
                       key("EVENT_NAME")
                       value("\$.artifactory.webhook.event")
+                      expressionType('JSONPath')
                     }
                   }
-                  causeString("Triggered on \$ARTIFACT_NAME")
-                  regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
-                  regexpFilterExpression("storage\\.afterCreate-SuperPackage")
                   printContributedVariables(true)
+                  regexpFilterExpression("storage\\.afterCreate-SuperPackage")
+                  regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
                 }     
               }
-            }
-          }
           definition {
               cpsScm {
                   scm {

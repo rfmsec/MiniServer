@@ -22,6 +22,7 @@ echo Waiting for jfrog to finish initialzing before pushing the configuration...
 :WaitforJfrogInit
 curl http://192.168.99.100:30802/ | grep -i "available shortly"
 if %ERRORLEVEL% == 0 ( timeout /t 20 >nul && goto :WaitforJfrogInit )
+timeout /t 30 >nul
 
 echo Configuring artifactory webhooks...
 kubectl exec -n artifactory %ART_POD_NAME% -- wget https://raw.githubusercontent.com/rfmsec/MiniServer/main/webhook.groovy -P /var/opt/jfrog/artifactory/etc/artifactory/plugins

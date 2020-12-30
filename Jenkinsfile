@@ -5,7 +5,7 @@ pipeline {
         registryUrl = 'http://192.168.99.100:30802/miniserver/'
         dockerImage = ''
     }
-    agent { dockerfile true }
+    agent { docker }
     stages { 
         stage('Building') { 
             steps { 

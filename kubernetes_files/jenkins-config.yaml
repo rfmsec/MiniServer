@@ -183,12 +183,29 @@ jobs:
             regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
           }
         }
+        definition {
+          cps {
+            script('''
+      pipeline {
+        environment { 
+          imageName = "miniserver/miniserver"
+          registryCredential = 'tomer'
+          registryUrl = 'http://192.168.99.100:30802/miniserver/'
+          dockerImage = ''
+        }
+        agent any
         stages {
-          stage('Deploy the new artifact') {
+          stage('Pulling the latest image') {
             steps {
-              sh "echo $EVENT_NAME"
-              sh "echo $ARTIFACT_NAME"
+              docker.withRegistry(registryUrl,registryCredential) {
+                dockerImage = docker.image(imageName)
+                dockerImage.pull()
+              }
             }
+          }
+        }
+      }
+      ''')
           }
         }
       }

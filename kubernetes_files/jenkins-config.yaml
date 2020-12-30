@@ -207,7 +207,7 @@ jobs:
         }
       }
       ''')
-      sandbox()
+      sandbox(true)
           }
         }
       }

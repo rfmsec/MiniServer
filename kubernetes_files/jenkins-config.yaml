@@ -185,7 +185,6 @@ jobs:
         }
         definition {
           cps {
-            sandbox(true)
             script('''pipeline {
         environment { 
           imageName = "miniserver/miniserver"
@@ -207,7 +206,8 @@ jobs:
           }
         }
       }
-      ''')
+      ''').stripIndent())
+      sandbox(true)
           }
         }
       }

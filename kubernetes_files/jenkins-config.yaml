@@ -139,29 +139,6 @@ tool:
               version: "latest"
 jobs:
   - script: >
-      pipelineJob("GitHub_MiniServer_pipe") {
-          description()
-          keepDependencies(false)
-          definition {
-              cpsScm {
-                  scm {
-                      git {
-                          remote {
-                              url("https://github.com/rfmsec/MiniServer.git")
-                          }
-                          branch("*")
-                      }
-                  }
-                  scriptPath("Jenkinsfile")
-              }
-          }
-          triggers {
-              githubPush()
-          }
-          disabled(false)
-      }
-      
-  - script: >
       pipelineJob("Deploy_Artifacts") {
           description()
           properties {
@@ -191,6 +168,28 @@ jobs:
                   }
                   scriptPath("Jenkinsfile2")
               }
+          }
+          disabled(false)
+      }
+  - script: >
+      pipelineJob("GitHub_MiniServer_pipe") {
+          description()
+          keepDependencies(false)
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                          remote {
+                              url("https://github.com/rfmsec/MiniServer.git")
+                          }
+                          branch("*")
+                      }
+                  }
+                  scriptPath("Jenkinsfile")
+              }
+          }
+          triggers {
+              githubPush()
           }
           disabled(false)
       }

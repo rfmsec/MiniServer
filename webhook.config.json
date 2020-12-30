@@ -1,7 +1,7 @@
 {
     "webhooks": {
         "jenkinswebhook": {
-            "url": "http://192.168.99.100:30800/jenkins/generic-webhook-trigger/invoke",
+            "url": "http://tomer:1234@192.168.99.100:30800/generic-webhook-trigger/invoke",
             "events": [
               "storage.afterCreate",
               "docker.tagCreated"

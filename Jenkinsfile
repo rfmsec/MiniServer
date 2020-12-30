@@ -18,7 +18,7 @@ pipeline {
            steps {   
                script {
                   dockerImage.inside() {
-                     sh '[[ $(curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/) == 200 ]] && return 0 || return 1'
+                     sh 'curl http://localhost:8080/'
                 }
               }
            }

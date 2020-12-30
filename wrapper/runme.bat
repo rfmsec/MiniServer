@@ -7,6 +7,7 @@ kubectl delete ns jenkins
 echo Recraeting the environment using the YAML files...
 kubectl create -f https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/artifactory.yaml
 kubectl create -f https://github.com/rfmsec/MiniServer/raw/main/kubernetes_files/jenkins.yaml
+timeout /t 2 >nul
 
 echo Creating variables with the JFrog and Jenkins pods names...
 for /F "tokens=1" %%i in ('kubectl get pods -n artifactory ^| findstr /i "artifactory"') do set ART_POD_NAME=%%i

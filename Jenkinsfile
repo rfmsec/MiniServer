@@ -17,7 +17,10 @@ pipeline {
         stage('Testing the build') {
            steps {   
                script {
+                   sh 'docker ps'
                    dockerImage.inside() {
+                       sh 'ls'
+                       sh 'echo $HOSTNAME'
                        sh 'curl http://localhost:8080/'
                    }
               }

@@ -172,7 +172,7 @@ jobs:
                   causeString: 'Triggered on $ARTIFACT_NAME',
                   printContributedVariables: true,
                   regexpFilterText: '$EVENT_NAME-$ARTIFACT_NAME',
-                  regexpFilterExpression: 'storage\.afterCreate-SuperPackage'
+                  regexpFilterExpression: 'storage\\.afterCreate-SuperPackage'
           	  )
           }
           disabled(false)

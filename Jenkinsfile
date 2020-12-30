@@ -18,7 +18,7 @@ pipeline {
            steps {   
                script {
                   dockerImage.inside() {
-                     sh 'if [[ \'curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8080/\' == 000 ]]; then return 1; else return 0; fi'
+                     sh 'if [[ \'curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8081/\' == 000 ]]; then return 1; else return 0; fi'
                 }
               }
            }

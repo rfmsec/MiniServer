@@ -18,7 +18,7 @@ pipeline {
            steps {   
                script {
                    sh 'docker run -d --rm  --name=miniserver ' + imageName + ":$BUILD_NUMBER"
-                   sh 'docker exec miniserver curl http://localhost:8081/'
+                   sh 'docker exec miniserver curl http://localhost:8080/'
                    sh 'docker stop miniserver'
               }
            }

@@ -17,14 +17,9 @@ pipeline {
         stage('Testing the build') {
            steps {   
                script {
-                   sh 'docker image ls'
-                   sh 'ls'
-                   dockerImage.inside() {
-                       sh 'echo inside method'
-                       sh 'ls'
-                       sh 'echo $HOSTNAME'
-                       sh 'curl http://localhost:8080/'
-                   }
+                   sh 'docker run --rm ' + imageName + ":$BUILD_NUMBER"
+                   sh 'docker ps'
+                   sh 'docker exec ' + imageName + ":$BUILD_NUMBER" + ' curl http://localhost:8080/'
               }
            }
         }

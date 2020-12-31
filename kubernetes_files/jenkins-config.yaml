@@ -165,7 +165,7 @@ jobs:
         description()
         triggers {
           GenericTrigger {
-            causeString("Triggered on \$CONT_NAME:$CONT_VER")
+            causeString("Triggered on \$CONT_NAME:\$CONT_VER")
             genericVariables {
               genericVariable {
                 key("REPO")

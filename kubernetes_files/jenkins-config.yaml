@@ -197,9 +197,9 @@ jobs:
             script('''
               pipeline {
                 environment { 
-                  imageName = "$REPO/$CONT_NAME:$CONT_VER"
+                  imageName = "$CONT_NAME:$CONT_VER"
                   registryCredential = 'tomer'
-                  registryUrl = '192.168.99.100:30802/'
+                  registryUrl = '192.168.99.100:30802/miniserver/'
                   dockerImage = ''
                 }
                 agent any

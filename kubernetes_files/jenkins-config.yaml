@@ -199,7 +199,7 @@ jobs:
                 environment { 
                   imageName = "$REPO/$CONT_NAME:$CONT_VER"
                   registryCredential = 'tomer'
-                  registryUrl = 'http://192.168.99.100:30802/miniserver/'
+                  registryUrl = '192.168.99.100:30802/'
                   dockerImage = ''
                 }
                 agent any
@@ -207,7 +207,7 @@ jobs:
                   stage('Pulling the latest image') {
                     steps {
                       script {
-                        docker.withRegistry(registryUrl,registryCredential) {
+                        docker.withRegistry("http://" + registryUrl,registryCredential) {
                         dockerImage = docker.image(imageName)
                         dockerImage.pull()
                         }

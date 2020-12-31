@@ -217,7 +217,7 @@ jobs:
                   stage('Running the new build') {
                     steps {
                       script {
-                        sh "docker run -d --rm -p 8888:8080 --name=\"miniserver-latest\" " + registryUrl + "$CONT_NAME:$CONT_VER"
+                        sh "docker run -d --rm -p 8888:8080 --name='miniserver-latest' " + registryUrl + "$CONT_NAME:$CONT_VER"
                       }
                     }
                   }

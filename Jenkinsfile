@@ -2,7 +2,7 @@ pipeline {
     environment { 
         imageName = "miniserver/miniserver" 
         registryCredential = 'tomer'
-        registryUrl = 'http://192.168.99.100:30802/miniserver/'
+        registryUrl = 'http://192.168.99.100:30802/'
         dockerImage = ''
     }
     agent any
@@ -34,7 +34,7 @@ pipeline {
         } 
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi " + registryUrl + ":$BUILD_NUMBER -f" 
+                sh "docker rmi " + registryUrl + imageName + ":$BUILD_NUMBER -f" 
             }
         } 
     }

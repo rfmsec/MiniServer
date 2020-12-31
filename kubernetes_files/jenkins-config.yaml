@@ -208,7 +208,7 @@ jobs:
                   stage('Pulling the latest image') {
                     steps {
                       script {
-                        sh "docker stop miniserver_latest"
+                        sh "docker stop miniserver-latest"
                         docker.withRegistry("http://" + registryUrl,registryCredential) {
                         dockerImage = docker.image(imageName)
                         dockerImage.pull()

@@ -11,7 +11,7 @@ def index():
     return '''
 <html>
     <head>
-        <title>Home Page - TEG server 2</title>
+        <title>Home Page - TEG server 3</title>
     </head>
     <body>
         Hello user, welcome to TEG server!<br><br>

@@ -165,21 +165,21 @@ jobs:
         description()
         triggers {
           GenericTrigger {
-            causeString("Triggered due to new artifact")
+            causeString("Triggered due to new artifact: \$REPO_KEY/\$IMAGE_NAME:\$IMAGE_TAG")
             genericVariables {
               genericVariable {
-                key("REPO")
-                value("\$.artifactory.webhook.data.repoKey")
+                key("REPO_KEY")
+                value("\$.artifactory.webhook.data.event.repoKey")
                 expressionType('JSONPath')
               }
               genericVariable {
-                key("CONT_NAME")
-                value("\$.artifactory.webhook.data.image_name")
+                key("IMAGE_NAME")
+                value("\$.artifactory.webhook.data.docker.image")
                 expressionType('JSONPath')
               }
               genericVariable {
-                key("CONT_VER")
-                value("\$.artifactory.webhook.data.tag")
+                key("IMAGE_TAG")
+                value("\$.artifactory.webhook.data.docker.tag")
                 expressionType('JSONPath')
 
               }
@@ -189,8 +189,8 @@ jobs:
                 expressionType('JSONPath')
               }
             }
-            regexpFilterExpression("storage\\.afterCreate-miniserver")
-            regexpFilterText("\$EVENT_NAME-\$CONT_NAME")
+            regexpFilterExpression("docker.tagCreated-miniserver")
+            regexpFilterText("\$EVENT_NAME-\$REPO_KEY")
           }
         }
         definition {

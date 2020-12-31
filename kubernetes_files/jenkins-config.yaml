@@ -198,9 +198,9 @@ jobs:
             script('''
               pipeline {
                 environment { 
-                  imageName = "$CONT_NAME:$CONT_VER"
+                  imageName = "$REPO_KEY/$IMAGE_NAME:$IMAGE_TAG"
                   registryCredential = 'tomer'
-                  registryUrl = '192.168.99.100:30802/miniserver/'
+                  registryUrl = '192.168.99.100:30802/'
                   dockerImage = ''
                 }
                 agent any
@@ -218,7 +218,7 @@ jobs:
                   stage('Running the new build') {
                     steps {
                       script {
-                        sh "docker run -d --rm -p 8888:8080 --name='miniserver-latest' " + registryUrl + "$CONT_NAME:$CONT_VER"
+                        sh "docker run -d --rm -p 8888:8080 --name='miniserver-latest' " + registryUrl + imageName
                       }
                     }
                   }

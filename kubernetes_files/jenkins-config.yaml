@@ -174,13 +174,14 @@ jobs:
               }
               genericVariable {
                 key("CONT_NAME")
-                value("\$.artifactory.webhook.data.repoPath.parent.parent.name")
+                value("\$.artifactory.webhook.data.image_name")
                 expressionType('JSONPath')
               }
               genericVariable {
                 key("CONT_VER")
-                value("\$.artifactory.webhook.data.repoPath.parent.name")
+                value("\$.artifactory.webhook.data.tag")
                 expressionType('JSONPath')
+
               }
               genericVariable {
                 key("EVENT_NAME")

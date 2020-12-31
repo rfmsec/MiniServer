@@ -208,7 +208,15 @@ jobs:
                   stage('Pulling the latest image') {
                     steps {
                       script {
-                        sh "docker stop miniserver-latest"
+                        sh """
+                        isRunning=\$(docker ps | grep miniserver-latest | awk '{print \$14}')
+                        if [[ \$isRunning == miniserver-latest ]]
+                        then
+                            docker stop miniserver-latest
+                        else
+                            echo miniserver-latest is not running, nothing to stop...
+                        fi
+                        """
                         docker.withRegistry("http://" + registryUrl,registryCredential) {
                         dockerImage = docker.image(imageName)
                         dockerImage.pull()

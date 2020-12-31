@@ -34,7 +34,7 @@ pipeline {
         } 
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi ${c.id} -f" 
+                sh "docker rmi $(docker image ls | grep -i " + imageName + " | awk '{print $3}') -f"
             }
         } 
     }

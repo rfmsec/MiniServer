@@ -165,11 +165,19 @@ jobs:
         description()
         triggers {
           GenericTrigger {
-            causeString("Triggered on \$ARTIFACT_NAME")
+            causeString("Triggered on \$CONT_NAME:$CONT_VER")
             genericVariables {
               genericVariable {
-                key("ARTIFACT_NAME")
-                value("\$.artifactory.webhook.data.name")
+                key("REPO")
+                value("\$.artifactory.webhook.data.repoKey")
+                expressionType('JSONPath')
+              }
+                key("CONT_NAME")
+                value("\$.artifactory.webhook.data.repoPath.parent.parent.name")
+                expressionType('JSONPath')
+              }
+                key("CONT_VER")
+                value("\$.artifactory.webhook.data.repoPath.parent.name")
                 expressionType('JSONPath')
               }
               genericVariable {
@@ -178,9 +186,8 @@ jobs:
                 expressionType('JSONPath')
               }
             }
-            printContributedVariables(true)
-            regexpFilterExpression("storage\\.afterCreate-SuperPackage")
-            regexpFilterText("\$EVENT_NAME-\$ARTIFACT_NAME")
+            regexpFilterExpression("storage\\.afterCreate-miniserver")
+            regexpFilterText("\$EVENT_NAME-\$CONT_NAME")
           }
         }
         definition {
@@ -188,7 +195,7 @@ jobs:
             script('''
               pipeline {
                 environment { 
-                  imageName = "miniserver/miniserver"
+                  imageName = "$REPO/$CONT_NAME:$CONT_VER"
                   registryCredential = 'tomer'
                   registryUrl = 'http://192.168.99.100:30802/miniserver/'
                   dockerImage = ''
@@ -202,6 +209,13 @@ jobs:
                         dockerImage = docker.image(imageName)
                         dockerImage.pull()
                         }
+                      }
+                    }
+                  }
+                  stage('Running the new build') {
+                    steps {
+                      script {
+                        sh "docker run -d --rm -p 8888:8080 --name=\"miniserver-latest\" " + registryUrl + "$CONT_NAME:$CONT_VER"
                       }
                     }
                   }
